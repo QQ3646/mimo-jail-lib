@@ -49,6 +49,7 @@
               --dev /dev
               --tmpfs /tmp
               --symlink "${pkgs.bashInteractive}/bin/bash" /bin/sh
+              --symlink "${pkgs.bashInteractive}/bin/bash" /bin/bash
               --symlink "${pkgs.coreutils}/bin/env" /usr/bin/env
               --bind "$PWD" "$PWD"
               --chdir "$PWD"
