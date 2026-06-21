@@ -82,6 +82,7 @@
 
             MIMO_BIN="${mimo-pkg}/bin/mimocode"
             [ ! -f "$MIMO_BIN" ] && MIMO_BIN="${mimo-pkg}/bin/mimo-code"
+            [ ! -f "$MIMO_BIN" ] && MIMO_BIN="${mimo-pkg}/bin/mimo"
 
             exec ${pkgs.bubblewrap}/bin/bwrap "''${BWRAP_ARGS[@]}" "$MIMO_BIN" "$@"
           '';
