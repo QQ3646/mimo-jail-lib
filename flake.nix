@@ -45,7 +45,6 @@
 
             BWRAP_ARGS=(
               --ro-bind /nix/store /nix/store
-              --ro-bind /etc /etc
               --proc /proc
               --dev /dev
               --tmpfs /tmp
@@ -56,6 +55,13 @@
               --bind "$HOME/.config/mimocode" "$HOME/.config/mimocode"
               --bind "$HOME/.local/share/mimocode" "$HOME/.local/share/mimocode"
               --bind "$HOME/.local/state/mimocode" "$HOME/.local/state/mimocode"
+              --ro-bind-try /etc/resolv.conf /etc/resolv.conf
+              --ro-bind-try /run/systemd/resolve/stub-resolv.conf /run/systemd/resolve/stub-resolv.conf
+              --ro-bind-try /etc/hosts /etc/hosts
+              --ro-bind-try /etc/ssl/certs /etc/ssl/certs
+              --ro-bind-try /etc/static/ssl/certs /etc/static/ssl/certs
+
+              --ro-bind-try /etc/passwd /etc/passwd
               --ro-bind-try /etc/localtime /etc/localtime
               --unshare-all
               --share-net
