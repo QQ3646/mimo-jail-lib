@@ -35,7 +35,9 @@
         in
           pkgs.writeShellScriptBin name ''
             #!/usr/bin/env bash
-            exec 2>> /tmp/mimocode-sandbox.log
+            if [[ "$1" == "acp" ]]; then
+              exec 2>> /tmp/mimocode-sandbox.log
+            fi
 
             mkdir -p "$HOME/.config/mimocode" \
                      "$HOME/.local/share/mimocode" \
@@ -51,15 +53,12 @@
               --symlink "${pkgs.coreutils}/bin/env" /usr/bin/env
               --bind "$PWD" "$PWD"
               --chdir "$PWD"
-
               --bind "$HOME/.config/mimocode" "$HOME/.config/mimocode"
               --bind "$HOME/.local/share/mimocode" "$HOME/.local/share/mimocode"
               --bind "$HOME/.local/state/mimocode" "$HOME/.local/state/mimocode"
-
-              --ro-bind-try /etc/localtime /etc/localtime  # Таймзона
+              --ro-bind-try /etc/localtime /etc/localtime
               --unshare-all
               --share-net
-              --new-session
               --die-with-parent
             )
 
